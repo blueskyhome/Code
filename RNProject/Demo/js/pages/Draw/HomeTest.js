@@ -12,8 +12,9 @@ import Icon from "react-native-vector-icons/Feather";
 import IconOne from "react-native-vector-icons/EvilIcons";
 import IconTwo from "react-native-vector-icons/MaterialIcons";
 import LoadingTest from "../LoadingTest";
+import cityCode from './cityCode';
 const {width,height} = Dimensions.get('window');
-const url = 'https://www.sojson.com/open/api/weather/json.shtml?city=';
+const url = 'http://t.weather.sojson.com/api/weather/city/';
 const URL = 'https://api.dujin.org/bing/1366.php';
 export default class HomeTest extends Component{
     static navigationOptions = {
@@ -28,16 +29,32 @@ export default class HomeTest extends Component{
             city:'重庆',
             data:null,
             detail:null,
+            cityCode:'101040100',
        }
     }
     static defaultProps = {
-        city:'重庆'
+        city:'重庆',
+        cityCode:'101040100'
     };
     componentDidMount(){
-        this.fetchData();
+        this.timer = setTimeout(
+            () => this.fetchData(),
+            2000
+        );
+    }
+    componentWillUnmount() {
+        // 如果存在this.timer，则使用clearTimeout清空。
+        // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
+        this.timer && clearTimeout(this.timer);
     }
     fetchData =()=>{
-        fetch(url+this.props.city)
+        const city = cityCode;
+        for(var i = 0; i < city.length; i++){
+            if(this.props.city === city[i].city_name){
+                this.state.cityCode = city[i].city_code;
+            }
+        }
+        fetch(url+this.state.cityCode)
             .then((response)=>response.json())
             .then((json)=>{
                 this.setState({

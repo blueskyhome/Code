@@ -9,8 +9,9 @@ import {
     TouchableWithoutFeedback,
     AccessibilityInfo,
     ActivityIndicator,
-    Modal
+    StatusBar
 } from 'react-native';
+import LoadingTest from "./LoadingTest";
 let pageNo = 1;
 let totalPage = 20;
 const {width} =Dimensions.get('window');
@@ -28,7 +29,15 @@ export default class GirlTest extends Component{
         }
     }
     componentDidMount(){
-        this.fetchData(pageNo);
+        this.timer = setTimeout(
+            () => this.fetchData(pageNo),
+            1000
+        );
+    }
+    componentWillUnmount() {
+        // 如果存在this.timer，则使用clearTimeout清空。
+        // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
+        this.timer && clearTimeout(this.timer);
     }
     fetchData =(pageNo)=>{
         console.log(pageNo);
@@ -64,7 +73,7 @@ export default class GirlTest extends Component{
     Header=()=>{
         return(
             <View style={styles.head}>
-                  <Text style={{color:'white'}}>放松一下吧!</Text>
+                  <Text style={{color:'white',fontSize:18}}>放松一下吧!</Text>
             </View>
         );
     };
@@ -127,6 +136,7 @@ export default class GirlTest extends Component{
         this.fetchData(pageNo);
     }
     render(){
+        if(this.state.dataArray){
             return(
                 <FlatList
                     ListFooterComponent={this._renderFooter.bind(this)}
@@ -143,6 +153,10 @@ export default class GirlTest extends Component{
                     onEndReached={this._onEndReached.bind(this)}
                 />
             );
+        }else{
+            return <LoadingTest/>
+        }
+
     }
 }
 const styles=StyleSheet.create({
@@ -163,7 +177,7 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         width:width,
-        height:30,
+        height:50,
         backgroundColor:'#00ffcc'
     },
     footer:{

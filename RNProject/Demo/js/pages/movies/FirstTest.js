@@ -21,7 +21,15 @@ export default class FirstTest extends Component{
         }
     }
     componentDidMount(){
-        this.fetchData();
+        this.timer = setTimeout(
+            () => this.fetchData(),
+            500
+        );
+    }
+    componentWillUnmount() {
+        // 如果存在this.timer，则使用clearTimeout清空。
+        // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
+        this.timer && clearTimeout(this.timer);
     }
     fetchData=()=>{
         fetch(url)
@@ -178,7 +186,7 @@ export default class FirstTest extends Component{
         );
     }
    render(){
-        if(this.state.data){
+        if(this.state.data !== null){
             return(
                 <FlatList
                     data = {this.state.data}

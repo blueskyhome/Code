@@ -6,6 +6,7 @@ import {
     Text,
     Image,
     TouchableOpacity,
+    StatusBar
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import TransportTest from './TransportTest';
@@ -17,6 +18,7 @@ export default class TabTest extends Component{
     state={
        selectedTab:'Transport',
         welcome:true,
+        color:'#2196F3'
     };
     componentDidMount(){
         this.timer=setTimeout(()=>{
@@ -31,7 +33,7 @@ export default class TabTest extends Component{
     render(){
         if(!this.state.welcome){
             return(
-                <TabNavigator tabBarStyle={{backgroundColor:'white'}}>
+                <TabNavigator tabBarStyle={{backgroundColor:'white',height:60}}>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'Transport'}
                         title={'Github'}
@@ -43,7 +45,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fuf62k2772j301c01ca9t.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Transport'})}
+                        onPress={()=>this.setState({selectedTab:'Transport',color:'#2196F3'})}
                     >
                         <TransportTest {...this.props}/>
                     </TabNavigator.Item>
@@ -58,7 +60,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1ftv77mhgdwj301c01ca9t.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Girl'})}
+                        onPress={()=>this.setState({selectedTab:'Girl',color:'#00ffcc'})}
                     >
                         <GirlTest {...this.props}/>
                     </TabNavigator.Item>
@@ -73,7 +75,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fufcjmvi10j301s01s0sj.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'movies'})}
+                        onPress={()=>this.setState({selectedTab:'movies',color:'white'})}
                     >
                         <ScrollTabTest {...this.props}/>
                     </TabNavigator.Item>
@@ -88,7 +90,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1ftv79qne62j301c01c0sh.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Mine'})}
+                        onPress={()=>this.setState({selectedTab:'Mine',color:'white'})}
                     >
                         <Mine {...this.props}/>
                     </TabNavigator.Item>
@@ -111,8 +113,8 @@ const styles=StyleSheet.create({
         color:'black',
     },
     icon:{
-        width:20,
-        height:20
+        width:30,
+        height:30
     }
 
 });

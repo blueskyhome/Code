@@ -9,7 +9,8 @@ import {
     Modal,
     View,
     Button,
-    Text
+    Text,
+    PermissionsAndroid
 } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -18,6 +19,9 @@ export default class GirlPhoto extends Component{
     static navigationOptions = {
         header:null
     };
+    componentDidMount(){
+        this.requestExternalStoragePermission();
+    }
      saveImageAlbum() {
          let {params} = this.props.navigation.state;
          let imageUrl =params.url;
@@ -28,7 +32,7 @@ export default class GirlPhoto extends Component{
                      // add this option that makes response data to be stored as a file,
                      // this is much more performant.
                      fileCache: true,
-                     path:'/storage/emulated/0/ocamera/pic/one',
+                     path:'/storage/emulated/0/ocamera/pic/one.jpg',
                  })
                  .fetch('GET', imageUrl, {
                      //some headers ..
@@ -36,16 +40,30 @@ export default class GirlPhoto extends Component{
                  .then((res) => {
                      // the temp file path
                      console.log(res.path());
-                     CameraRoll.saveToCameraRoll(res.path()).then(() => {
+                     CameraRoll.saveToCameraRoll(res.path(),'photo').then(() => {
                          imageView = <Image source={{ uri : Platform.OS === 'android' ? 'file://' + res.path()  : '' + res.path() }}/>;
-                         Alert.alert(res.path()+ '保存成功!');
+                         alert(res.path()+ '保存成功!');
                      }).catch((err) => {
-                         Alert.alert('', '保存失败!');
+                         Alert.alert(err, '保存失败!');
                          console.warn(err.toString());
                      });
                  })
          }
     }
+    requestExternalStoragePermission = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                {
+                    title: 'My App Storage Permission',
+                    message: 'My App needs access to your storage ' +
+                    'so you can save your photos',
+                },
+            );
+        } catch (err) {
+            console.error('Failed to request permission ', err);
+        }
+    };
     saveImg() {
         let {params} = this.props.navigation.state;
         let img =params.url;
