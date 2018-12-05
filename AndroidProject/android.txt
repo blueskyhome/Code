@@ -1,1 +1,3 @@
 这里是android的项目，后续需要补充！
+andorid 好用的框架
+ViewPagerTransforms --- ViewPager动画效果  github：https://github.com/ToxicBakery/ViewPagerTransforms
