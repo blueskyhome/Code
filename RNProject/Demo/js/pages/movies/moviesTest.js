@@ -26,17 +26,9 @@ export default class moviesTest extends Component{
          basic:null,
      }
  }
-    componentDidMount(){
-        this.timer = setTimeout(
-            () => this.fetchData(),
-            2000
-        );
-    }
-    componentWillUnmount() {
-        // 如果存在this.timer，则使用clearTimeout清空。
-        // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
-        this.timer && clearTimeout(this.timer);
-    }
+ componentDidMount(){
+     this.fetchData();
+ }
  fetchData = () =>{
      const { params } = this.props.navigation.state;
      fetch(URL+params.id)
@@ -248,7 +240,6 @@ const styles = StyleSheet.create({
     },
     Flat:{
        flex:1,
-        marginLeft:15,
-        marginTop:5
+        marginLeft:15
     }
 });

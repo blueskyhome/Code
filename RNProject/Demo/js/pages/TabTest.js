@@ -5,35 +5,37 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity,
-    StatusBar
+    DeviceEventEmitter
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import TransportTest from './TransportTest';
 import GirlTest from './GirlTest';
 import Mine from './Mine';
 import ScrollTabTest from "./movies/ScrollTabTest";
-import SwiperTest from "./SwiperTest";
+import Login from "./Login";
 export default class TabTest extends Component{
     state={
        selectedTab:'Transport',
-        welcome:true,
-        color:'#2196F3'
+        screen:'welcome'
     };
     componentDidMount(){
-        this.timer=setTimeout(()=>{
-            this.setState({
-                welcome:false
-            })
-        },2000);
+        this.deEmit = DeviceEventEmitter.addListener('go',(a)=>{
+            if(a==='go'){
+                this.setState({
+                    screen:'Go'
+                })
+            }
+        })
     }
     componentWillUnmount(){
-        this.timer&&clearTimeout(this.timer)
+        this.deEmit&&clearTimeout(this.deEmit);
     }
     render(){
-        if(!this.state.welcome){
+        if(this.state.screen === 'welcome'){
+            return <Login/>;
+        }else{
             return(
-                <TabNavigator tabBarStyle={{backgroundColor:'white',height:60}}>
+                <TabNavigator tabBarStyle={{backgroundColor:'white'}}>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'Transport'}
                         title={'Github'}
@@ -45,7 +47,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fuf62k2772j301c01ca9t.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Transport',color:'#2196F3'})}
+                        onPress={()=>this.setState({selectedTab:'Transport'})}
                     >
                         <TransportTest {...this.props}/>
                     </TabNavigator.Item>
@@ -60,7 +62,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1ftv77mhgdwj301c01ca9t.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Girl',color:'#00ffcc'})}
+                        onPress={()=>this.setState({selectedTab:'Girl'})}
                     >
                         <GirlTest {...this.props}/>
                     </TabNavigator.Item>
@@ -75,7 +77,7 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fufcjmvi10j301s01s0sj.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'movies',color:'white'})}
+                        onPress={()=>this.setState({selectedTab:'movies'})}
                     >
                         <ScrollTabTest {...this.props}/>
                     </TabNavigator.Item>
@@ -90,14 +92,13 @@ export default class TabTest extends Component{
                         renderSelectedIcon={()=><Image style={styles.icon}
                                                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1ftv79qne62j301c01c0sh.jpg'}}
                         />}
-                        onPress={()=>this.setState({selectedTab:'Mine',color:'white'})}
+                        onPress={()=>this.setState({selectedTab:'Mine'})}
                     >
                         <Mine {...this.props}/>
                     </TabNavigator.Item>
                 </TabNavigator>
             );
-        }else{
-           return <SwiperTest/>
+
         }
     }
 }
@@ -113,8 +114,8 @@ const styles=StyleSheet.create({
         color:'black',
     },
     icon:{
-        width:30,
-        height:30
+        width:20,
+        height:20
     }
 
 });

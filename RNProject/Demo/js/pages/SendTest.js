@@ -107,7 +107,7 @@ export default class SendTest extends Component{
                     </TouchableOpacity>
                 </View>
                 <ImageBackground
-                    source={{uri:'http://ww1.sinaimg.cn/large/005T39qaly1fxmx3wyds1j31lf2qf7wi.jpg'}}
+                    source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fuvrffydz5j31lf2qf7wi.jpg'}}
                     style={{width: '100%', height: '100%'}}
                     blurRadius={5}
                 >

@@ -10,7 +10,7 @@ const {
     ImageBackground,
     FlatList,
     DeviceEventEmitter
-} =require( 'react-native');
+} = require( 'react-native');
 
 import PickerTest from './PickerTest';
 import ItemTest from './ItemTest';

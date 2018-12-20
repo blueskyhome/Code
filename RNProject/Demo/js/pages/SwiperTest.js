@@ -7,9 +7,9 @@ import {
     Image,
     ImageBackground,
     StyleSheet,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Dimensions
 } from 'react-native';
-let Dimensions  = require('Dimensions');
 import * as Animatable from 'react-native-animatable';
 let {width,height} = Dimensions.get('window');
 

@@ -1,22 +1,14 @@
 import React,{Component} from 'react';
-const {
-    StyleSheet,
-    Dimensions,
-    ScrollView,
+import {
     Text,
-    Image,
-    TouchableOpacity,
     View,
-    ImageBackground,
-    FlatList,
-
-} =require( 'react-native');
+} from  'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Swipeout from 'react-native-swipeout';
 export default class ItemTest extends Component{
     constructor(props){
-        super(props);
+       super(props);
         this.state={
             num:1
         }

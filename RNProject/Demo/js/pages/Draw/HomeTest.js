@@ -29,14 +29,15 @@ export default class HomeTest extends Component{
             city:'重庆',
             data:null,
             detail:null,
-            cityCode:'101040100',
+            cityCode:'101040100'
        }
     }
     static defaultProps = {
         city:'重庆',
         cityCode:'101040100'
     };
-    componentDidMount(){
+
+    componentDidMount() {
         this.timer = setTimeout(
             () => this.fetchData(),
             2000
@@ -47,12 +48,13 @@ export default class HomeTest extends Component{
         // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
         this.timer && clearTimeout(this.timer);
     }
+
     fetchData =()=>{
         const city = cityCode;
         for(var i = 0; i < city.length; i++){
-            if(this.props.city === city[i].city_name){
-                this.state.cityCode = city[i].city_code;
-            }
+           if(this.props.city === city[i].city_name){
+               this.state.cityCode = city[i].city_code;
+           }
         }
         fetch(url+this.state.cityCode)
             .then((response)=>response.json())

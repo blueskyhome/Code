@@ -50,7 +50,8 @@ const setup=StackNavigator({
             }
         },
         DetailZ:{screen:DetailZ},
-        GirlPhoto:{screen:GirlPhoto}
+        GirlPhoto:{screen:GirlPhoto},
+
 },{
     initialRouteName:'TabTest',
    }

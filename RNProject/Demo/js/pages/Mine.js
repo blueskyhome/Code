@@ -6,11 +6,11 @@ import {StyleSheet,
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    AsyncStorage
+    AsyncStorage,
+    BackAndroid
 } from "react-native";
 const {width} = Dimensions.get('window');
 const {height} = Dimensions.get('window');
-import HTMLView from 'react-native-htmlview';
 import ImagePicker from 'react-native-image-picker';
 export default class Mine extends Component{
     constructor(props){
@@ -66,6 +66,11 @@ export default class Mine extends Component{
             }
         })
     }
+    exitApp=()=>{
+        AsyncStorage.removeItem('password');
+        AsyncStorage.removeItem('username');
+        BackAndroid.exitApp();
+    };
     render(){
         return(
             <View style={styles.container}>
@@ -125,16 +130,11 @@ export default class Mine extends Component{
                         <Text style={{fontSize:15,color:'black'}}>闲文</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.TwoTwo}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('HomeZ')}
-                                      style={{justifyContent:'center',alignItems:'center'}}
-                    >
-                        <Image style={{width:40,height:40}}
-                               source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fv3o2nqdxaj30ar08p747.jpg'}}
-                        />
-                        <Text style={{fontSize:15,color:'black'}}>百度百科</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity  onPress={this.exitApp}>
+                    <View style={styles.three}>
+                        <Text style={{fontSize:25,color:'white'}}>安全退出</Text>
+                    </View>
+                </TouchableOpacity>
 
             </View>
         );
@@ -182,6 +182,17 @@ const styles=StyleSheet.create({
         borderRadius:5,
         width:width-40,
         marginLeft:20
+    },
+    three:{
+        marginTop:80,
+        width:width-60,
+        marginLeft:30,
+        marginRight:30,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#7B8DF9',
+        height:50,
+        borderRadius:25,
     }
 
 });

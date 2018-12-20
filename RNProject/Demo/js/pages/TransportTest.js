@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    StatusBar
 } from 'react-native';
 import  ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view';
 
@@ -16,7 +15,7 @@ export default class TransportTest extends Component {
                     tabBarInactiveTextColor={'mintcream'}
                     tabBarActiveTextColor={'white'}
                     tabBarUnderlineStyle={{backgroundColor: '#e7e7e7', height: 2}}
-                    renderTabBar={() => <ScrollableTabBar style={{height:50}}/>}
+                    renderTabBar={() => <ScrollableTabBar/>}
                 >
                     <PopularTab  tabLabel={'Android'}
                                  style={{color: 'white'}}

@@ -3,12 +3,20 @@ package com.demo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import com.beefe.picker.PickerViewPackage;
-import com.github.yamill.orientation.OrientationPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.beefe.picker.PickerViewPackage;
+import com.github.yamill.orientation.OrientationPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.brentvatne.react.ReactVideoPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.beefe.picker.PickerViewPackage;
+import com.github.yamill.orientation.OrientationPackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -29,12 +37,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNFetchBlobPackage(),
-            new PickerViewPackage(),
-            new OrientationPackage(),
             new ReactVideoPackage(),
             new VectorIconsPackage(),
-            new ImagePickerPackage()
+            new SplashScreenReactPackage(),
+            new PickerViewPackage(),
+            new OrientationPackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage()
       );
     }
 

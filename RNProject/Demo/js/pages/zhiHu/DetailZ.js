@@ -12,7 +12,6 @@ import {
     Animated
 } from 'react-native';
 import HeaderTest from "../user/HeaderTest";
-import LoadingTest from "../LoadingTest";
 const URL='http://daily.zhihu.com/story/';
 const {width,height} = Dimensions.get('window');
 export default class DetailZ extends Component{
@@ -50,7 +49,16 @@ export default class DetailZ extends Component{
         });
         if(this.state.time){
             return(
-                <LoadingTest/>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                    <Animated.Image
+                        style={{
+                            width:200,
+                            height:200,
+                            transform:[{rotate:spin}]
+                        }}
+                        source={{uri:'http://ww1.sinaimg.cn/large/005T39qagy1fubp1g69w7j30go0goq34.jpg'}}
+                    />
+                </View>
             );
         }else{
             return (
