@@ -38,7 +38,7 @@ export default class LoadingTest extends Component{
             outputRange:['0deg','180deg']
         });
         return(
-            <View style={{justifyContent:'center',alignItems:'center',height:height,backgroundColor:'white'}}>
+            <View style={{justifyContent:'center',alignItems:'center',height:height}}>
                 <Animated.View style={[styles.downViewStyle,{transform:[{rotate:spin}]}]}>
                     <Animated.View style={[styles.Two,{transform:[{rotate:spin1}]}]}/>
                 </Animated.View>
@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
        borderRadius:50,
        width:100,
        height:100,
-       borderBottomColor:'red',
-       borderTopColor:'green',
-       borderRightColor:'yellow',
-       borderLeftColor:'blue',
+       borderBottomColor:'#C02842',
+       borderTopColor:'#EECF77',
+       borderRightColor:'#53767C',
+       borderLeftColor:'#552538',
        borderWidth:10,
        backgroundColor:'white'
 
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
         width:70,
         borderRadius:35,
         borderWidth:35,
-        borderBottomColor:'red',
-        borderRightColor:'blue',
-        borderTopColor:'yellow',
-        borderLeftColor:'green'
+        borderBottomColor:'#C02842',
+        borderRightColor:'#EECF77',
+        borderTopColor:'#53767C',
+        borderLeftColor:'#552538'
     }
 });

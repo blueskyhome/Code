@@ -11,8 +11,8 @@ import {
     ActivityIndicator,
     Modal
 } from 'react-native';
-let pageNo = 1;
-let totalPage = 20;
+let pageNo = 2;
+let totalPage = 15;
 const {width} =Dimensions.get('window');
 /*import Girl from '../DataList/Girl';*/
 const first = 'https://www.apiopen.top/meituApi?page=';
@@ -32,7 +32,7 @@ export default class GirlTest extends Component{
     }
     fetchData =(pageNo)=>{
         console.log(pageNo);
-        if(pageNo >= 25){
+        if(pageNo >= 15){
             this.setState({showFoot:1})
         }else{
             const url = first+pageNo;
@@ -69,7 +69,7 @@ export default class GirlTest extends Component{
         );
     };
     _keyExtractor = (item, index) => index.toString();
-    RenderItem=({item})=>{
+    RenderItem=({item,index})=>{
         const images = [
             {
                 props:{
@@ -81,14 +81,14 @@ export default class GirlTest extends Component{
         if(!item){
             return <Text>loading.....</Text>
         }else {
-            return (
-                <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('GirlPhoto',{url:item.value.url})}>
-                <Image style={{height:width/2*1.5,width:width/2}}
-                       source={{uri:item.value.url === '' ? 'http://ww1.sinaimg.cn/large/005T39qagy1fui9apma58j321g19w000.jpg':item.value.url}}
-                />
+                return (
+                    <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('GirlPhoto',{url:item.value.url})}>
+                        <Image style={{height:width/2*1.5,width:width/2}}
+                               source={{uri:item.value.url === '' ? 'http://ww1.sinaimg.cn/large/005T39qagy1fui9apma58j321g19w000.jpg':item.value.url}}
+                        />
 
-                </TouchableWithoutFeedback>
-            );
+                    </TouchableWithoutFeedback>
+                );
         }
     };
     separator = () => {

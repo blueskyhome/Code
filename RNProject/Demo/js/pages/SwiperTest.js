@@ -6,8 +6,7 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    StyleSheet,
-    TouchableWithoutFeedback,
+
     Dimensions
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';

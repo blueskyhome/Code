@@ -81,7 +81,9 @@ export default class One extends Component{
     };
    render(){
         if(!this.state.data){
-          return <LoadingTest/>
+          return <View style={{flex:1,justifyContent:'center',alignItems:'center',height:height,width:width}}>
+              <ActivityIndicator size={"large"} color={"#C02842"} />
+          </View>
         }else{
             return(
                 <View style={{flex:1}}>

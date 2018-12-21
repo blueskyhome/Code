@@ -6,7 +6,8 @@ import {
     FlatList,
     Dimensions,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    ActivityIndicator
 } from 'react-native';
 import Icon from "react-native-vector-icons/Feather";
 import IconOne from "react-native-vector-icons/EvilIcons";
@@ -98,7 +99,9 @@ export default class HomeTest extends Component{
                 </View>
             );
         }else{
-            return <LoadingTest/>
+            return  <View style={{flex:1,justifyContent:'center',alignItems:'center',height:height,width:width}}>
+                       <ActivityIndicator size={"large"} color={"#C02842"} />
+                    </View>
         }
     }
     RenderItem(item){

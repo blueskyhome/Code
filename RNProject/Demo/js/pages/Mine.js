@@ -90,8 +90,8 @@ export default class Mine extends Component{
                         }
                     </TouchableOpacity>
                     <View style={styles.partOne}>
-                        <Text style={{fontSize:20}}>北冥有鱼</Text>
-                        <Text>用程序丈量人生，用键盘敲出天下</Text>
+                        <Text style={{fontSize:20}}>CoTime</Text>
+                        <Text>让程序生活不一样！</Text>
                     </View>
                 </View>
                 <View style={styles.Two}>
