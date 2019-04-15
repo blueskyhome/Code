@@ -1,6 +1,11 @@
+/**
+ * 子线程
+ * 实现查找因子的代码
+ */
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 public class SmallThread {
     private int n,result,num;
@@ -13,6 +18,7 @@ public class SmallThread {
     public void build(ArrayList<Factor> factorList,ExecutorService executorService){
             if(result < num){
                 try{
+                    //Runnable线程创建方式
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
@@ -26,6 +32,7 @@ public class SmallThread {
                             }
                         }
                     };
+                    //将线程提交给线程池
                    executorService.execute(runnable);
                 }catch (Exception e) {
                     e.printStackTrace();

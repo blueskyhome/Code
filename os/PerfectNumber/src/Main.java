@@ -1,3 +1,7 @@
+/**
+ * 主线程，运用ArrayList、线程池等概念
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -21,6 +25,7 @@ public class Main {
     private void print(int sum,int num){
         int flag = 1;
         while(flag == 1){
+            //判断线程是否全部关闭
             if(cacheThread.isTerminated()){
                 for(int i = 0 ;i < factorList.size() ;i++){
                     sum = sum+factorList.get(i).getmFactor();
@@ -41,6 +46,7 @@ public class Main {
         int remainder = num % p;
         int result = num / p;
         int n = 1;
+        //判断是否有余数
         if (remainder == 0) {
             for (int i = 1; i < num; i = i + result) {
                 SmallThread smallThread = new SmallThread(i, result - 1, num);
@@ -54,6 +60,7 @@ public class Main {
                 System.out.println("n:"+ n++);
             }
         }
+        //依次关闭线程中的代码
         cacheThread.shutdown();
     }
 }
