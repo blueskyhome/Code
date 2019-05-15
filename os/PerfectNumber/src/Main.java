@@ -1,5 +1,6 @@
 /**
  * 主线程，运用ArrayList、线程池等概念
+ * 完全数，数的因子之和是等于他本身！
  */
 
 import java.util.ArrayList;
