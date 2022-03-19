@@ -1,1 +1,1 @@
-﻿这是一些代码项目，只供我学习之用。包括android，和react-native。
+﻿这是一些代码项目，只供我学习之用。包括android，C和react-native。
